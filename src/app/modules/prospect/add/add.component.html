@@ -1,0 +1,87 @@
+<div class="w-100 title-dialog">
+  <H2>Ajouter un prospect</H2>
+  <hr />
+</div>
+
+<div mat-dialog-content class="dialog-user">
+  <div class="row">
+    <div class="col">
+      <label for="">Nom</label>
+      <input type="text" [(ngModel)]="prospect.nom" name="nom" class="form-control" />
+    </div>
+    <div class="col">
+      <label for="">Prénom</label>
+      <input type="text" [(ngModel)]="prospect.prenom" name="prenom" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="">Numéro Tel</label>
+      <input type="text" [(ngModel)]="prospect.numeroTelephone" name="numeroTelephone" class="form-control" />
+    </div>
+    <div class="col">
+      <label for="">Adresse</label>
+      <input type="text" [(ngModel)]="prospect.adresse" name="adresse" class="form-control" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <label for="">Job</label>
+      <input type="text" [(ngModel)]="prospect.job" name="job" class="form-control" />
+    </div>
+    <div class="col">
+      <label for="">age</label>
+      <input type="number" [(ngModel)]="prospect.age" name="age" class="form-control" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="">Reseaux Sociaux</label>
+      <select name="reseauxSociaux" [(ngModel)]="prospect.reseauxSociaux" id="" class="form-control" >
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="TikTok">TikTok</option>
+        <option value="Twitter">Twitter</option>
+        <option value="Linkedin">Linkedin</option>
+
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="">Gendre</label>
+      <select name="reseauxSociaux" [(ngModel)]="prospect.genre" id="" class="form-control" >
+        <option value="Homme">Homme</option>
+        <option value="Femme">Femme</option>
+
+
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="">Description</label>
+      <textarea  class="form-control" [(ngModel)]="prospect.description" name="description" id=""></textarea>
+    </div>
+  </div>
+
+  <div class="row dialog-action">
+    <button
+      mat-raised-button
+      class="btn-save btn-dialog-action"
+      color="primary"
+      (click)="ajouter()"
+    >
+      Ajout
+    </button>
+    <button
+      mat-raised-button
+      class="btn-cancel btn-dialog-action"
+      color="warn"
+      mat-dialog-close
+    >
+      Annuler
+    </button>
+  </div>
+</div>

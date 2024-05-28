@@ -1,0 +1,55 @@
+<div class="div-main">
+  <div class="title-page">
+    <h2>Liste des Client</h2>
+
+  </div>
+
+  <div>
+    <div style="display: flex; justify-content: right; padding: 30px;">
+
+      <button pButton pRipple label="Ajouter" (click)="openDialogAdd()" icon="pi pi-plus"
+        class="p-button-success p-button-rounded"></button>
+    </div>
+
+    <p-table [value]="clients" [paginator]="true" [rows]="4" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[4, 8, 12 , 16]">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Telephone</th>
+          <th>Nom Prénom</th>
+
+          <th>Adresse</th>
+          <th>Job</th>
+          <th>Age</th>
+          <th>Genre</th>
+          <th>Provenance</th>
+          <th>Ajouter par</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+
+      </ng-template>
+      <ng-template pTemplate="body" let-clients>
+        <tr>
+          <td>{{ clients.preContrat.prospect.numeroTelephone }}</td>
+          <td>{{ clients.preContrat.prospect.prenom }} {{ clients.preContrat.prospect.nom }}</td>
+          <td>{{ clients.preContrat.prospect.adresse }}</td>
+          <td>{{ clients.preContrat.prospect.job }}</td>
+          <td>{{ clients.preContrat.prospect.age }}</td>
+          <td>{{ clients.preContrat.prospect.genre }}</td>
+          <td>{{ clients.preContrat.prospect.provenance.reseauxSociaux }}</td>
+          <td>{{ clients.preContrat.prospect.utilisateur?.firstName }} {{ clients.preContrat.prospect.utilisateur?.lastName }}</td>
+          <td>{{ clients.dateAjout | date : "yyyy-MM-dd" }}</td>
+          <td>
+
+            <button pButton icon="pi pi-trash" style="margin-left: 2px;" (click)="delete(clients.id)"
+              class="p-button-rounded p-button-danger" severity="secondary"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="w-100 title-dialog">
+  <H2>Ajouter un Tache</H2>
+  <hr>
+</div>
+
+
+<div mat-dialog-content class="dialog-user">
+  <div class="row">
+    <div class="col-md-12" style="margin-top: 15px;">
+      <label for="">Assigne</label>
+      <select name="assigne" class="form-control" (change)="selectUser()" [(ngModel)]="selectUs" name="secUser" id="">
+        <option *ngFor="let i of users" [value]="i.id">{{i.firstName}} {{i.lastName}}</option>
+      </select>
+    </div>
+    <div class="col-md-12" style="margin-top: 15px;">
+      <label for="">Description</label>
+      <textarea name="description" [(ngModel)]="tache.description" id="" cols="3" rows="3" class="form-control" ></textarea>
+    </div>
+    <div class="col-md-12"  style="margin-top: 15px;">
+      <label for="">Deadline</label>
+      <input type="date" name="dateDeadline" [(ngModel)]="tache.dateDeadline" class="form-control" >
+    </div>
+
+  </div>
+
+  <div class="row dialog-action" style="margin-top: 15px;">
+      <button mat-raised-button class="btn-save btn-dialog-action" (click)="submit()"  color="primary">Ajout</button>
+      <button mat-raised-button class="btn-cancel btn-dialog-action" color="warn" mat-dialog-close>Annuler</button>
+  </div>
+</div>

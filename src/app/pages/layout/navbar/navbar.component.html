@@ -1,0 +1,172 @@
+<mat-toolbar class="header">
+  <div class="nav-left">
+    <button
+      class="btn-mobile-principal"
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      *ngIf="isHandset$ | async"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+
+    <button
+      mat-button
+      class="btn-chevron"
+      onclick="isExp()"
+      (click)="isExpanded = !isExpanded"
+    >
+      <mat-icon
+        mat-list-icon
+        class="chevron-button sidenav-button"
+        [ngClass]="{ rotated: isExpanded }"
+      >
+        menu
+      </mat-icon>
+    </button>
+    <a
+      class="navbar-brand me-0 px-3 fs-6 slide-in-blurred-top"
+
+
+    >
+      <img style="width: 200px;" src="../../../../assets/images/tanitlabailogo.png" alt="">
+    </a>
+  </div>
+
+
+  <div class="navbar-nav custom-navbar">
+    <div class="nav-item text-nowrap nav-header px-0">
+      <!-- start header notification -->
+
+      <!-- end header notification -->
+
+      <!-- profile settings-->
+      <div class="dropdown px-md-3 px-xs-2 px-sm-2 m-auto">
+        <a
+
+          class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle slide-in-blurred-top m-auto"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <div class="user-profil-img rounded-5 me-2"></div>
+        </a>
+        <ul
+          class="dropdown-menu ul-profil dropdown-menu-perso dropdown-menu-light text-small shadow slide-in-blurred-top"
+          style="inset: none"
+        >
+          <li>
+            <div class="li-profil-img">
+              <img
+                src="../../../../../assets/images/pict-user.jpg"
+                alt=""
+                width="40"
+                height="40"
+                class="rounded me-2 color-change-2x1"
+              />
+              <br />
+              {{user?.firstName}} {{user?.lastName}}
+            </div>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+
+          <li>
+            <a class="dropdown-item" (click)="goToChange('change-password')" >
+              <mat-icon>settings</mat-icon>
+              <span>Change password</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container" autosize id="sidenav">
+  <mat-sidenav
+    #drawer
+    class="sidenav menu swing-in-left-bck"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+    [ngClass]="{ 'new-width': isExpanded }"
+  >
+    <mat-nav-list
+      class="menu-style"
+      [ngClass]="{ 'new-style-css': isExpanded }"
+    >
+      <mat-list-item
+        [routerLink]="'entreprise'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role == 'ENTREPRISE'"
+      >
+        <mat-icon mat-list-icon class="icon-link">domain</mat-icon>
+        <span>List des employees</span>
+      </mat-list-item>
+      <mat-list-item
+        [routerLink]="'liste-user'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role == 'ADMIN'"
+      >
+        <mat-icon mat-list-icon class="icon-link">group</mat-icon>
+        <span>Users</span>
+      </mat-list-item>
+      
+      <mat-list-item
+        [routerLink]="'taches'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role =='ENTREPRISE'||user?.role == 'Employe' "
+
+      >
+        <mat-icon mat-list-icon class="icon-link">dashboard_customize</mat-icon>
+        <span>Tache</span>
+      </mat-list-item>
+      <mat-list-item
+        [routerLink]="'prospect'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role == 'Employe' "
+
+      >
+        <mat-icon mat-list-icon class="icon-link">assignment</mat-icon>
+        <span>Prospect</span>
+      </mat-list-item>
+
+      <mat-list-item
+        [routerLink]="'pre-contrat'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role == 'ENTREPRISE'"
+      >
+        <mat-icon mat-list-icon class="icon-link">import_contacts</mat-icon>
+        <span>Pre contart</span>
+      </mat-list-item>
+      <mat-list-item
+        [routerLink]="'clients'"
+        routerLinkActive="active"
+        class="list-item"
+        *ngIf="user?.role == 'ENTREPRISE'"
+      >
+        <mat-icon mat-list-icon class="icon-link">wc</mat-icon>
+        <span>Client</span>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
